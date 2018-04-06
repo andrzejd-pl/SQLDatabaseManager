@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.sql.*;
 
 public class MainClass {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String user, passwd;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -19,16 +19,20 @@ public class MainClass {
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from firmy;");
 
-            while (resultSet.next()) {
-                System.out.println(resultSet.getRow());
-            }
+            do {
+                System.out.print(resultSet.getRow() + " ");
+                String id = resultSet.getString(1);
+                System.out.println(id);
+            } while (resultSet.next());
 
             resultSet.close();
             statement.close();
             conn.close();
         }
-        catch (Exception e) {
-            e.printStackTrace();
+        catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+            System.err.println("SQLState: " + ex.getSQLState());
+            System.err.println("VendorError: " + ex.getErrorCode());
         }
     }
 }
