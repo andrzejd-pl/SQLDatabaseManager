@@ -1,11 +1,11 @@
 package Database;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MysqlConnector {
     private Connection connection;
-    private Statement statement;
-    private ResultSet resultSet;
 
     private String host;
     private String databaseName;
@@ -19,24 +19,41 @@ public class MysqlConnector {
         this.password = password;
     }
 
-    public void connect() {
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://" + host + "/" + databaseName, user, password);
-        } catch (SQLException ex) {
-            System.err.println("SQLException: " + ex.getMessage());
-            System.err.println("SQLState: " + ex.getSQLState());
-            System.err.println("VendorError: " + ex.getErrorCode());
-        }
+    public void connect() throws SQLException {
+        connection = DriverManager.getConnection("jdbc:mysql://" + host + "/" + databaseName, user, password);
     }
 
     public void close() {
         try {
-            resultSet.close();
-            statement.close();
             connection.close();
-        } catch (SQLException e) {
+        } catch (SQLException ignored) {
         }
     }
 
-//    public
+    public Data execute(String query) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        resultSet.first();
+        ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+
+        List<List<String>> rows = new ArrayList<>();
+        List<String> columns = new ArrayList<>();
+
+        for (int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
+            columns.add(resultSetMetaData.getColumnName(i));
+        }
+
+        do {
+            List<String> row = new ArrayList<>();
+            for (int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
+                row.add(resultSet.getString(i));
+            }
+            rows.add(row);
+        } while (resultSet.next());
+
+        resultSet.close();
+        statement.close();
+
+        return new Data(columns, rows);
+    }
 }
