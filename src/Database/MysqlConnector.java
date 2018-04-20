@@ -12,11 +12,13 @@ public class MysqlConnector {
     private String user;
     private String password;
 
-    public MysqlConnector(String host, String database, String user, String password) {
+    public MysqlConnector(String host, String database, String user, String password) throws ClassNotFoundException {
         this.host = host;
         this.databaseName = database;
         this.user = user;
         this.password = password;
+
+        Class.forName("com.mysql.jdbc.Driver");
     }
 
     public void connect() throws SQLException {

@@ -6,14 +6,13 @@ import java.sql.*;
 public class MainClass {
     public static void main(String[] args) {
         Arguments arguments = new Arguments(args);
-        MysqlConnector mysqlConnector = new MysqlConnector(arguments.getHost(),arguments.getDatabase(), arguments.getUser(), arguments.getPassword());
+        MysqlConnector mysqlConnector = null;
         try {
             System.out.println("Welcome in SQLDatabaseManager!!!");
-            Class.forName("com.mysql.jdbc.Driver");
 
-            mysqlConnector.connect();
-            Data data = mysqlConnector.execute("select * from tagi;");
-            mysqlConnector.close();
+            if(arguments.isEmpty()) {
+                System.out.println();
+            }
 
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
