@@ -12,6 +12,8 @@ public class MysqlConnector {
     private String user;
     private String password;
 
+    private boolean connected = false;
+
     public MysqlConnector(String host, String database, String user, String password) throws ClassNotFoundException {
         this.host = host;
         this.databaseName = database;
@@ -23,16 +25,20 @@ public class MysqlConnector {
 
     public void connect() throws SQLException {
         connection = DriverManager.getConnection("jdbc:mysql://" + host + "/" + databaseName, user, password);
+        connected = true;
     }
 
     public void close() {
         try {
             connection.close();
         } catch (SQLException ignored) {
+        }finally {
+            connected = false;
         }
     }
 
     public Data execute(String query) throws SQLException {
+        if(!connected) connect();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
         resultSet.first();

@@ -1,6 +1,6 @@
-package controllers;
+package Controllers;
 
-import models.Model;
+import Models.Model;
 
 import javax.swing.text.View;
 import java.util.List;
@@ -9,12 +9,12 @@ public class Controller {
     private List<Model> models;
     private List<View> views;
 
-    public void setMode(Model model) {
-
+    public void addMode(Model model) {
+        this.models.add(model);
     }
 
-    public void setView(View view) {
-
+    public void addView(View view) {
+        this.views.add(view);
     }
 
     public void viewTables() {
