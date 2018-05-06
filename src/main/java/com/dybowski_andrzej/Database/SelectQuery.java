@@ -23,14 +23,14 @@ public class SelectQuery extends Query{
             query += column + ", ";
         }
 
-        query = query.substring(0, query.length()-3);
+        query = query.substring(0, query.length()-2);
         query += " from ";
 
         for (String table : this.tables) {
             query += table + ", ";
         }
 
-        query = query.substring(0, query.length()-3);
+        query = query.substring(0, query.length()-2);
         query += " where " + condition;
 
         return query;
