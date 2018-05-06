@@ -1,7 +1,7 @@
 package com.dybowski_andrzej;
 
-import Database.Data;
-import Database.MysqlConnector;
+import com.dybowski_andrzej.Database.Data;
+import com.dybowski_andrzej.Database.MysqlConnector;
 
 import java.sql.*;
 

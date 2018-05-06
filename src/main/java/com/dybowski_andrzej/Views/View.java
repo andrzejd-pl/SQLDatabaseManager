@@ -1,6 +1,6 @@
 package com.dybowski_andrzej.Views;
 
-import Models.Model;
+import com.dybowski_andrzej.Models.Model;
 
 public class View {
     private Model model;

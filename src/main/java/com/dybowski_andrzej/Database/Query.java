@@ -1,12 +1,13 @@
 package com.dybowski_andrzej.Database;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Query {
-    protected String tables;
+    protected List<String> tables = new ArrayList<>();
 
     protected Query(String tables) {
-        this.tables = tables;
+        this.tables.add(tables);
     }
 
     public abstract String getQuery();

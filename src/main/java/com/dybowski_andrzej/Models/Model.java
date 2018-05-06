@@ -1,11 +1,11 @@
 package com.dybowski_andrzej.Models;
 
-import Database.Data;
-import Database.MysqlConnector;
-import Database.Query;
-import Database.SelectQuery;
-import Exceptions.BadArgument;
-import Views.View;
+import com.dybowski_andrzej.Database.Data;
+import com.dybowski_andrzej.Database.MysqlConnector;
+import com.dybowski_andrzej.Database.Query;
+import com.dybowski_andrzej.Database.SelectQuery;
+import com.dybowski_andrzej.Exceptions.BadArgument;
+import com.dybowski_andrzej.Views.View;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -55,7 +55,7 @@ public class Model {
     public Data selectFromTable(String table, List<String> columns, String conditions) {
         Query query = new SelectQuery(table, columns, conditions);
 
-
+        return null;
     }
 
     public List<String> listTables() {
