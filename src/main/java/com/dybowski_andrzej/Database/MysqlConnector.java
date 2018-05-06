@@ -1,4 +1,4 @@
-package Database;
+package com.dybowski_andrzej.Database;
 
 import java.sql.*;
 import java.util.ArrayList;

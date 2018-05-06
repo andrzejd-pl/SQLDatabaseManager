@@ -1,4 +1,4 @@
-package Exceptions;
+package com.dybowski_andrzej.Exceptions;
 
 public class BadArgument extends Exception {
 

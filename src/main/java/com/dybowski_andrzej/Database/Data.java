@@ -1,4 +1,4 @@
-package Database;
+package com.dybowski_andrzej.Database;
 
 import java.util.List;
 

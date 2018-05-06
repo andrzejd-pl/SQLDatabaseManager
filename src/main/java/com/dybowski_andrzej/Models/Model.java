@@ -1,7 +1,9 @@
-package Models;
+package com.dybowski_andrzej.Models;
 
 import Database.Data;
 import Database.MysqlConnector;
+import Database.Query;
+import Database.SelectQuery;
 import Exceptions.BadArgument;
 import Views.View;
 
@@ -50,7 +52,9 @@ public class Model {
 
     }
 
-    public Data selectFromTable(String table, List<String> columns, List<String> conditions) throws SQLException {
+    public Data selectFromTable(String table, List<String> columns, String conditions) {
+        Query query = new SelectQuery(table, columns, conditions);
+
 
     }
 

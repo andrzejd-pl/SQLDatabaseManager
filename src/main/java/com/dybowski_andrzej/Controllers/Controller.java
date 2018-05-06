@@ -1,4 +1,4 @@
-package Controllers;
+package com.dybowski_andrzej.Controllers;
 
 import Models.Model;
 

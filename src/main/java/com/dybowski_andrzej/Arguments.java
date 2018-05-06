@@ -1,3 +1,5 @@
+package com.dybowski_andrzej;
+
 public class Arguments {
     private String host;
     private String user;

@@ -1,4 +1,4 @@
-package Views;
+package com.dybowski_andrzej.Views;
 
 import Models.Model;
 

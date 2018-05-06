@@ -1,3 +1,5 @@
+package com.dybowski_andrzej;
+
 import Database.Data;
 import Database.MysqlConnector;
 
