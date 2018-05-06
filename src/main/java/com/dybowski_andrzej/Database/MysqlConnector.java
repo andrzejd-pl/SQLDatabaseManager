@@ -32,13 +32,13 @@ public class MysqlConnector {
         try {
             connection.close();
         } catch (SQLException ignored) {
-        }finally {
+        } finally {
             connected = false;
         }
     }
 
     public Data execute(String query) throws SQLException {
-        if(!connected) connect();
+        if (!connected) connect();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
         resultSet.first();
@@ -54,7 +54,7 @@ public class MysqlConnector {
         do {
             List<String> row = new ArrayList<>();
             for (int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
-                row.add(resultSet.getString(i));
+                row.add((resultSet.getString(i) == null) ? ("null") : (resultSet.getString(i)));
             }
             rows.add(row);
         } while (resultSet.next());
@@ -63,5 +63,40 @@ public class MysqlConnector {
         statement.close();
 
         return new Data(columns, rows);
+    }
+
+    public static class Builder {
+        private String host;
+        private String databaseName;
+        private String user;
+        private String password;
+
+        public Builder setDatabaseName(String databaseName) {
+            this.databaseName = databaseName;
+
+            return this;
+        }
+
+        public Builder setHost(String host) {
+            this.host = host;
+
+            return this;
+        }
+
+        public Builder setPassword(String password) {
+            this.password = password;
+
+            return this;
+        }
+
+        public Builder setUser(String user) {
+            this.user = user;
+
+            return this;
+        }
+
+        public MysqlConnector build() throws ClassNotFoundException {
+            return new MysqlConnector(host, databaseName, user, password);
+        }
     }
 }
