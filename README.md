@@ -7,3 +7,8 @@ Write in Java
 
 Build Tool: Maven
 
+![alt text](https://github.com/andrzejd-pl/SQLDatabaseManager/blob/test/maven-logo.svg "Logo Java")
+
+Database: MySQL
+
+![alt text](https://github.com/andrzejd-pl/SQLDatabaseManager/blob/test/mysql-logo.svg "Logo Java")
