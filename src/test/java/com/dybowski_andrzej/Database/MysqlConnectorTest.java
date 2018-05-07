@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
-import java.util.Arrays;
+import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static java.util.Arrays.asList;
 
 class MysqlConnectorTest {
     private static final String user = "test",
@@ -18,7 +18,7 @@ class MysqlConnectorTest {
     void execute() {
         String goodQuery = "select * from customers where id = 1";
         Data goodData = new Data(
-                Arrays.asList("id",
+                asList("id",
                         "company",
                         "last_name",
                         "first_name",
@@ -37,7 +37,7 @@ class MysqlConnectorTest {
                         "notes",
                         "attachments"
                 ),
-                Arrays.asList(Arrays.asList(
+                Collections.singletonList(asList(
                         "1",
                         "Company A",
                         "Bedecs",
@@ -57,7 +57,7 @@ class MysqlConnectorTest {
                         "null",
                         ""
                 )));
-        MysqlConnector connector = null;
+        MysqlConnector connector;
         try {
             connector = new MysqlConnector.Builder().setDatabaseName(database).setHost(host).setPassword(password).setUser(user).build();
             try {
@@ -69,11 +69,13 @@ class MysqlConnectorTest {
 
             } catch (SQLException e) {
                 e.printStackTrace();
+                assert false;
             } finally {
                 connector.close();
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            assert false;
         }
 
     }
