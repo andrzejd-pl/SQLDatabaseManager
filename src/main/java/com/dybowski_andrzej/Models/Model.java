@@ -1,13 +1,11 @@
 package com.dybowski_andrzej.Models;
 
-import com.dybowski_andrzej.Database.Data;
-import com.dybowski_andrzej.Database.MysqlConnector;
-import com.dybowski_andrzej.Database.Query;
-import com.dybowski_andrzej.Database.SelectQuery;
+import com.dybowski_andrzej.Database.*;
 import com.dybowski_andrzej.Exceptions.BadArgument;
 import com.dybowski_andrzej.Views.View;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
@@ -32,46 +30,17 @@ public class Model {
         observers.forEach(View::update);
     }
 
-    public void insertData(String table, Data data) {
-
-    }
-
-    public void updateData(String table, Data data, List<String> conditions) {
-
-    }
-
-    public void deleteData(String table, List<String> conditions) {
-
-    }
-
-    public void createTable(String table, List<String> columns) {
-
-    }
-
-    public void dropTable(String table) {
-
-    }
-
-    public Data selectFromTable(String table, List<String> columns, String conditions) {
+    public Data selectFromTable(String table, List<String> columns, String conditions) throws SQLException {
         Query query = new SelectQuery(table, columns, conditions);
 
-        return null;
+        Data data = connector.execute(query.getQuery());
+        connector.close();
+        return data;
     }
 
-    public List<String> listTables() {
-        return null;
-    }
-
-    public List<String> listDatabases() {
-        return null;
-    }
-
-    public class Builder {
-        private List<View> observers;
+    public static class Builder {
+        private List<View> observers = new ArrayList<>();
         private MysqlConnector connector;
-
-        public Builder() {
-        }
 
         public Builder addObserver(View observer) {
             this.observers.add(observer);
