@@ -98,7 +98,7 @@ class QueryModelTest {
         }
 
         @Override
-        public void setModel(QueryModel model) {
+        public void setModel(Model model) {
         }
 
         @Override
