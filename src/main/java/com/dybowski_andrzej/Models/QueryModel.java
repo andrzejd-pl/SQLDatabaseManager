@@ -16,19 +16,6 @@ public class QueryModel extends Model {
         this.connector = connector;
     }
 
-    public void addObserver(View observer) {
-        this.observers.add(observer);
-    }
-
-    public void deleteObserver(View observer) {
-        int index = observers.indexOf(observer);
-        if (index != -1) observers.remove(index);
-    }
-
-    public void notifyObservers() {
-        observers.forEach(View::update);
-    }
-
     public Data selectFromTable(String table, List<String> columns, String conditions) throws SQLException {
         Query query = new SelectQuery(table, columns, conditions);
 
