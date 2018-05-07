@@ -1,6 +1,7 @@
 package com.dybowski_andrzej.Controllers;
 
 import com.dybowski_andrzej.Models.Model;
+import com.dybowski_andrzej.Models.QueryModel;
 
 import javax.swing.text.View;
 import java.util.List;

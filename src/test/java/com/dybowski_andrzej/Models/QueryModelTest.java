@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-class ModelTest {
+class QueryModelTest {
 
     @Test
     void addObserverAndDeleteObserverAndNotifyObservers() {
         try {
-            Model model = null;
+            QueryModel model = null;
             View view = new ViewMock(model);
-            model = new Model.Builder().addConnector(new MysqlConnectorMock("test", "test", "test", "test")).addObserver(view).build();
+            model = new QueryModel.Builder().addConnector(new MysqlConnectorMock("test", "test", "test", "test")).addObserver(view).build();
 
             model.notifyObservers();
 
@@ -78,9 +78,9 @@ class ModelTest {
                         ""
                 )));
         try {
-            Model model = null;
+            QueryModel model = null;
             View view = new ViewMock(model);
-            model = new Model.Builder().addObserver(view).addConnector(new MysqlConnector("192.168.0.101", "northwind", "test", "test")).build();
+            model = new QueryModel.Builder().addObserver(view).addConnector(new MysqlConnector("192.168.0.101", "northwind", "test", "test")).build();
 
             Data data = model.selectFromTable("customers", Collections.singletonList("*"), "id=1");
 
@@ -93,12 +93,12 @@ class ModelTest {
     }
 
     private class ViewMock extends View {
-        ViewMock(Model model) {
+        ViewMock(QueryModel model) {
             super(model);
         }
 
         @Override
-        public void setModel(Model model) {
+        public void setModel(QueryModel model) {
         }
 
         @Override
