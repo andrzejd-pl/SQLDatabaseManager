@@ -2,7 +2,7 @@ package com.dybowski_andrzej.Views;
 
 import com.dybowski_andrzej.Models.Model;
 
-public class View {
+public abstract class View {
     private Model model;
 
     public View(Model model) {
