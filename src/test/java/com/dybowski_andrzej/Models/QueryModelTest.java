@@ -33,6 +33,7 @@ class QueryModelTest {
             model.notifyObservers();
         } catch (BadArgument | ClassNotFoundException badArgument) {
             badArgument.printStackTrace();
+            assert false;
         }
     }
 
