@@ -18,9 +18,8 @@ class QueryModelTest {
     @Test
     void addObserverAndDeleteObserverAndNotifyObservers() {
         try {
-            QueryModel model = null;
-            View view = new ViewMock(model);
-            model = new QueryModel.Builder().addConnector(new MysqlConnectorMock("test", "test", "test", "test")).addObserver(view).build();
+            View view = new ViewMock();
+            QueryModel model = new QueryModel.Builder().addConnector(new MysqlConnectorMock("test", "test", "test", "test")).addObserver(view).build();
 
             model.notifyObservers();
 
@@ -80,9 +79,8 @@ class QueryModelTest {
                         ""
                 )));
         try {
-            QueryModel model = null;
-            View view = new ViewMock(model);
-            model = new QueryModel.Builder().addObserver(view).addConnector(new MysqlConnector("192.168.0.101", "northwind", "test", "test")).build();
+            View view = new ViewMock();
+            QueryModel model = new QueryModel.Builder().addObserver(view).addConnector(new MysqlConnector("192.168.0.101", "northwind", "test", "test")).build();
 
             Data data = model.selectFromTable("customers", Collections.singletonList("*"), "id=1");
 
@@ -93,5 +91,4 @@ class QueryModelTest {
             assert false;
         }
     }
-
 }
